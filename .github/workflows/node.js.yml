@@ -12,7 +12,12 @@ on:
 jobs:
   build:
 
-    runs-on: Agent-1
+    runs-on: 
+    - Agent-1
+    - self-hosted
+    - Linux
+    - X64
+    
 
     steps:
     - uses: actions/checkout@v4
