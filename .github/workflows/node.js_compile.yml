@@ -1,0 +1,40 @@
+# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
+
+name: Node.js CICD Compile
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  compile:
+
+    runs-on: 
+    - Agent-2
+    - self-hosted
+    - Linux
+    - X64
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup nodejs
+      uses: actions/setup-node@v4
+      with:
+        node-version: '23'
+
+    - name: Frontend Compilation (Syntax Check)
+      run: |
+       cd client
+       find . -name "*.js" -exec node --check {} +
+
+    - name: Backend Compilation (Syntax Check)
+      run: |
+       cd api
+       find . -name "*.js" -exec node --check {} +
+
+
