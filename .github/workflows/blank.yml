@@ -10,7 +10,7 @@ jobs:
   compile:
 
     runs-on: 
-    - Agent-1
+    - Agent-2
     - self-hosted
     - Linux
     - X64
